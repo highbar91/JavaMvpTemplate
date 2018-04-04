@@ -1,17 +1,44 @@
 package com.ashtoncoulson.javamvptemplate;
 
+import android.app.Activity;
 import android.app.Application;
 
-public class MainApplication extends Application {
+import com.ashtoncoulson.javamvptemplate.dagger.DaggerApplicationComponent;
 
-    private static MainApplication instance;
+import javax.inject.Inject;
 
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasActivityInjector;
+import timber.log.Timber;
+
+public class MainApplication extends Application implements HasActivityInjector {
+
+    public static final int BUILD_NUMBER = BuildConfig.VERSION_CODE;
+    public static final String VERSION_NAME = BuildConfig.VERSION_NAME;
+
+    @Inject
+    DispatchingAndroidInjector<Activity> dispatchingActivityInjector;
+
+    @Override
     public void onCreate() {
         super.onCreate();
-        instance = this;
+
+        if (isDebuggable()) {
+            Timber.plant(new Timber.DebugTree());
+        }
+
+        DaggerApplicationComponent.create()
+                .inject(this);
     }
 
-    public static MainApplication getApp() {
-        return instance;
+    public static boolean isDebuggable() { // Could be moved into an application state utility
+        return BuildConfig.DEBUG;
     }
+
+    @Override
+    public AndroidInjector<Activity> activityInjector() {
+        return dispatchingActivityInjector;
+    }
+
 }

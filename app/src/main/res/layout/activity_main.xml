@@ -10,12 +10,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:text="Example Button"/>
+        android:text="Click to change the color"/>
 
     <Button
-        android:id="@+id/test_button"
+        android:id="@+id/swap_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Test"/>
+        android:text="Swap"
+        android:textAllCaps="false"/>
+
+    <RelativeLayout
+        android:id="@+id/fragment_container"
+        android:layout_margin="16dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"/>
 
 </LinearLayout>
