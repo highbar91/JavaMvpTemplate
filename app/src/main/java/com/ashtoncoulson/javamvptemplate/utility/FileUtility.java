@@ -11,6 +11,7 @@ import android.provider.OpenableColumns;
 import com.ashtoncoulson.javamvptemplate.R;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
@@ -32,35 +33,35 @@ public class FileUtility {
         this.context = context;
     }
 
-    public File createImageFile() {
+    public File createImageFile() throws FileNotFoundException {
         if(isExternalStorageAvailable()) { // Ensure SD card is mounted
 
             File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), context.getString(R.string.app_name));
 
             if (! mediaStorageDir.exists()){ // Create the storage directory if it does not exist
                 if (! mediaStorageDir.mkdirs()){
-                    return null;
+                    throw new FileNotFoundException();
                 }
             }
 
             return new File(mediaStorageDir.getPath() + File.separator + "img" + createFileTimeStamp() + IMAGE_EXTENSION);
         }
-        return null;
+        throw new FileNotFoundException();
     }
-    public File createVideoFile() {
+    public File createVideoFile() throws FileNotFoundException {
         if(isExternalStorageAvailable()) { // Ensure SD card is mounted
 
             File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), context.getString(R.string.app_name));
 
             if (! mediaStorageDir.exists()){ // Create the storage directory if it does not exist
                 if (! mediaStorageDir.mkdirs()){
-                    return null;
+                    throw new FileNotFoundException();
                 }
             }
 
             return new File(mediaStorageDir.getPath() + File.separator + "vid" + createFileTimeStamp() + VIDEO_EXTENSION);
         }
-        return null;
+        throw new FileNotFoundException();
     }
 
     public String getFileName(Uri fileUri) {
