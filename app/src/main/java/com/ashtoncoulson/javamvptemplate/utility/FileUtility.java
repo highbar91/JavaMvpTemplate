@@ -39,7 +39,7 @@ public class FileUtility {
             File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), context.getString(R.string.app_name));
 
             if (! mediaStorageDir.exists()){ // Create the storage directory if it does not exist
-                if (! mediaStorageDir.mkdirs()){
+                if (!mediaStorageDir.mkdirs()){
                     throw new FileNotFoundException();
                 }
             }
@@ -53,7 +53,7 @@ public class FileUtility {
 
             File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), context.getString(R.string.app_name));
 
-            if (! mediaStorageDir.exists()){ // Create the storage directory if it does not exist
+            if (!mediaStorageDir.exists()){ // Create the storage directory if it does not exist
                 if (! mediaStorageDir.mkdirs()){
                     throw new FileNotFoundException();
                 }
