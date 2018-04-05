@@ -1,5 +1,6 @@
 package com.ashtoncoulson.javamvptemplate.dagger;
 
+import com.ashtoncoulson.javamvptemplate.BuildConfig;
 import com.ashtoncoulson.javamvptemplate.api.ApiClient;
 import com.ashtoncoulson.javamvptemplate.api.ApiService;
 
@@ -19,7 +20,7 @@ import static com.ashtoncoulson.javamvptemplate.MainApplication.VERSION_NAME;
 import static com.ashtoncoulson.javamvptemplate.MainApplication.isDebuggable;
 
 @Module
-public class RetrofitApiModule {
+public class ApiModule {
 
     @Provides
     @Named("OkHttp")
@@ -50,7 +51,7 @@ public class RetrofitApiModule {
     @Named("Retrofit")
     Retrofit getRetrofit(@Named("OkHttp") OkHttpClient client) {
         return new Retrofit.Builder()
-                .baseUrl("https://example.com/API")
+                .baseUrl(BuildConfig.API_URL_PATH)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
