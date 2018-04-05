@@ -24,12 +24,18 @@ public class MainApplication extends Application implements HasActivityInjector 
     public void onCreate() {
         super.onCreate();
 
+        initializeDagger();
+        initializeTimber();
+    }
+
+    private void initializeDagger() {
+        DaggerApplicationComponent.create()
+                .inject(this);
+    }
+    private void initializeTimber() {
         if (isDebuggable()) {
             Timber.plant(new Timber.DebugTree());
         }
-
-        DaggerApplicationComponent.create()
-                .inject(this);
     }
 
     public static boolean isDebuggable() { // Could be moved into an application state utility

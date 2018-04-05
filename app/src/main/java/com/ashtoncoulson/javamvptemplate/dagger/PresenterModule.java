@@ -1,5 +1,6 @@
 package com.ashtoncoulson.javamvptemplate.dagger;
 
+import com.ashtoncoulson.javamvptemplate.api.ApiService;
 import com.ashtoncoulson.javamvptemplate.feature.main.MainContract;
 import com.ashtoncoulson.javamvptemplate.feature.main.MainPresenter;
 import com.ashtoncoulson.javamvptemplate.fragment.bluesquare.BlueSquareContract;
@@ -16,8 +17,8 @@ public class PresenterModule {
     //Break these out into Activity and Fragment presenter Modules if this grows.
 
     @Provides
-    MainContract.Presenter provideMainContractPresenter() {
-        return new MainPresenter();
+    MainContract.Presenter provideMainContractPresenter(ApiService apiService) {
+        return new MainPresenter(apiService);
     }
 
     @Provides

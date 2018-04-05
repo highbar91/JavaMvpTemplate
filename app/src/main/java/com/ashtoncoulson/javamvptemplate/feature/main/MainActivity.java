@@ -39,14 +39,9 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+        presenter.registerView(this);
 
         initialize();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        presenter.registerView(this);
     }
 
     @Override
