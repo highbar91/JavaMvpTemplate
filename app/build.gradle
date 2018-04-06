@@ -14,11 +14,11 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "API_URL_PATH", "\"https://api.example.com/API\""
+            buildConfigField "String", "API_URL_PATH", "\"https://api.example.com/API/\""
         }
         debug {
             debuggable true
-            buildConfigField "String", "API_URL_PATH", "\"https://dev.example.com/API\""
+            buildConfigField "String", "API_URL_PATH", "\"https://dev.example.com/API/\""
         }
     }
     buildToolsVersion '27.0.3'
